@@ -2,14 +2,16 @@
 -- Find the last element of a list.
 
 myLast :: [a] -> a
-myLast = last
+myLast [a] = a
+myLast (x:xs) = myLast xs
 
 
 -- Problem 2
 -- Find the last-but-one (or second-last) element of a list.
 
 myButLast :: [a] -> a
-myButLast lst = last $ init lst
+myButLast [a, b] = a
+myButLast (x:xs) = myButLast xs
 
 
 -- Problem 3
@@ -20,7 +22,13 @@ elementAt (x:xs) 1 = x
 elementAt (x:xs) k = elementAt xs (k-1)
 
 
+-- Problem 4
+-- Find the number of elements in a list.
+
+
+
+
 main :: IO ()
 main = do
-  let out = elementAt [1, 2, 3, 4] 3
+  let out = myLast [1, 2, 3, 4]
   print out
