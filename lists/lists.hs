@@ -25,10 +25,12 @@ elementAt (x:xs) k = elementAt xs (k-1)
 -- Problem 4
 -- Find the number of elements in a list.
 
+myLength :: [a] -> Int
+myLength = foldr (\ x -> (+) 1) 0
 
 
 
 main :: IO ()
 main = do
-  let out = myLast [1, 2, 3, 4]
+  let out = myLength [1, 2, 3, 4]
   print out
