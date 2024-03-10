@@ -30,3 +30,30 @@ my_length([], 0).
 my_length([_|T], N) :-
   my_length(T, Ni),
   N is Ni+1.
+
+% tail-recursive version
+my_length_tr(List, N) :-
+  my_length_aux(List, 0, N).
+my_length_aux([], N, N).
+my_length_aux([_|T], I, N) :-
+  Ii is I+1,
+  my_length_aux(T, Ii, N).
+
+
+% Problem 5
+% Reverse a list.
+
+my_reverse([], []).
+my_reverse([H|T], Reversed) :-
+  append(Tr, [H], Reversed),
+  my_reverse(T, Tr).
+
+
+% Problem 6
+% Find out whether a list is a palindrome.
+
+is_palindrome([]).
+is_palindrome([_]).
+is_palindrome(List) :-
+  append([H|T], [H], List),
+  is_palindrome(T).
