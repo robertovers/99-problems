@@ -43,14 +43,11 @@ my_length_aux([_|T], I, N) :-
 % Problem 5
 % Reverse a list.
 
-
-my_reverse([], []).
 my_reverse(List, Reversed) :-
-  same_length(List, Reversed),
-  my_reverse_aux(List, Reversed).
-my_reverse_aux([H|T], Reversed) :-
-  append(Tr, [H], Reversed),
-  my_reverse(T, Tr).
+  my_reverse_aux(List, [], Reversed).
+my_reverse_aux([], Acc, Acc).
+my_reverse_aux([H|T], Acc, Reversed) :-
+  my_reverse_aux(T, [H|Acc], Reversed).
 
 
 % Problem 6
