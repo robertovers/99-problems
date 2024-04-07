@@ -33,12 +33,8 @@ myLength = foldr (\x -> (+) 1) 0
 -- Reverse a list.
 
 myReverse :: [a] -> [a]
-myReverse list = myReverseAux list []
-
-myReverseAux :: [a] -> [a] -> [a]
-myReverseAux [] acc = acc
-myReverseAux (x:xs) acc = myReverseAux xs (x:acc)
-
+myReverse [] = []
+myReverse (x:xs) = myReverse xs ++ [x]
 
 -- Problem 6 (*)
 -- Find out whether a list is a palindrome.
