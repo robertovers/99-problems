@@ -36,13 +36,22 @@ myReverse :: [a] -> [a]
 myReverse [] = []
 myReverse (x:xs) = myReverse xs ++ [x]
 
+-- using accumulator
+
+myReverseAcc :: [a] -> [a]
+myReverseAcc list = myReverseAux list []
+
+myReverseAux :: [a] -> [a] -> [a]
+myReverseAux [] acc = acc
+myReverseAux (x:xs) acc = myReverseAux xs (x:acc)
+
+
 -- Problem 6 (*)
 -- Find out whether a list is a palindrome.
 
 isPalindrome :: Eq a => [a] -> Bool
 isPalindrome [] = True
 isPalindrome list = myReverse list == list
-
 
 main :: IO ()
 main = do
