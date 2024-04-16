@@ -53,7 +53,9 @@ isPalindrome :: Eq a => [a] -> Bool
 isPalindrome [] = True
 isPalindrome list = myReverse list == list
 
-main :: IO ()
-main = do
-  let out = isPalindrome [1, 2, 3, 2, 1]
-  print out
+
+-- Problem 7 (*)
+-- Flatten a nested list.
+
+myFlatten :: [[a]] -> [a]
+myFlatten = foldr (++) []

@@ -50,3 +50,12 @@ is_palindrome([_]).
 is_palindrome(List) :-
   append([H|Mid], [H], List),
   is_palindrome(Mid).
+
+
+% Problem 7 (*)
+% Flatten a nested list.
+
+my_flatten([], []).
+my_flatten([H|Rest], Flattened) :-
+  append(H, RestF, Flattened),
+  my_flatten(Rest, RestF).
