@@ -59,3 +59,16 @@ isPalindrome list = myReverse list == list
 
 myFlatten :: [[a]] -> [a]
 myFlatten = foldr (++) []
+
+
+-- Problem 8 (**)
+-- Eliminate consecutive duplicates of list elements.
+
+compress :: Eq a => [a] -> [a]
+compress (x:xs) = x : compressAux xs x 
+
+compressAux :: Eq a => [a] -> a -> [a]
+compressAux [] _ = []
+compressAux (x:xs) k
+  | x == k = compressAux xs k
+  | otherwise = x : compressAux xs x

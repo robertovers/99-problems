@@ -59,3 +59,16 @@ my_flatten([], []).
 my_flatten([H|Rest], Flattened) :-
   append(H, RestF, Flattened),
   my_flatten(Rest, RestF).
+
+
+% Problem 8 (**)
+% Eliminate consecutive duplicates of list elements.
+
+compress([], []).
+compress([X], [X]).
+compress([H,H|Rest], Compressed) :-
+  compress([H|Rest], Compressed).
+compress([X,Y|Rest], Compressed) :-
+  X =\= Y,
+  append([X], RestC, Compressed),
+  compress([Y|Rest], RestC).
