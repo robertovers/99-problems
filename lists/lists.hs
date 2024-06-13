@@ -72,3 +72,17 @@ compressAux [] _ = []
 compressAux (x:xs) k
   | x == k = compressAux xs k
   | otherwise = x : compressAux xs x
+
+
+-- Problem 9 (**)
+-- Pack consecutive duplicates of list elements into sublists.
+
+pack :: Eq a => [a] -> [[a]]
+pack xs = packAux xs []
+
+packAux :: Eq a => [a] -> [[a]] -> [[a]]
+packAux [] acc = reverse acc
+packAux (x:xs) [] = packAux xs [[x]]
+packAux (x:xs) ((a:as):ys)
+  | x == a = packAux xs ((x:a:as):ys)
+  | otherwise = packAux xs ([x]:((a:as):ys))

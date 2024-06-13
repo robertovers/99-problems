@@ -72,3 +72,23 @@ compress([X,Y|Rest], Compressed) :-
   X =\= Y,
   append([X], RestC, Compressed),
   compress([Y|Rest], RestC).
+
+
+% Problem 9 (**)
+% Pack consecutive duplicates of list elements into sublists.
+
+pack(List, Packed) :-
+  pack_aux(List, [], Packed).
+
+pack_aux([], Acc, Packed) :-
+  reverse(Acc, Packed).
+pack_aux([H|Rest], [], Packed) :-
+  pack_aux(Rest, [[H]], Packed).
+pack_aux([H|Rest], [[H|RestH]|RestA], Packed) :-
+  append([H], [H|RestH], Extended),
+  pack_aux(Rest, [Extended|RestA], Packed).
+pack_aux([H|Rest], [[X|RestH]|RestA], Packed) :-
+  X =\= H,
+  Acc = [[X|RestH]|RestA],
+  pack_aux(Rest, [[H]|Acc], Packed).
+
