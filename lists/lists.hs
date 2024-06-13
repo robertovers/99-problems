@@ -86,3 +86,17 @@ packAux (x:xs) [] = packAux xs [[x]]
 packAux (x:xs) ((a:as):ys)
   | x == a = packAux xs ((x:a:as):ys)
   | otherwise = packAux xs ([x]:((a:as):ys))
+
+
+-- Problem 10 (*)
+-- Compute the run-length encoding of a list.
+
+encode :: Eq a => [a] -> [(a, Int)]
+encode xs = encodeAux xs []
+
+encodeAux :: Eq a => [a] -> [(a, Int)] -> [(a, Int)]
+encodeAux [] acc = reverse acc
+encodeAux (x:xs) [] = encodeAux xs [(x,1)]
+encodeAux (x:xs) ((y,k):ys)
+  | x == y = encodeAux xs ((y,k+1):ys)
+  | otherwise = encodeAux xs ((x,1):(y,k):ys)

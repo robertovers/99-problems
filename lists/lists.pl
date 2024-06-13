@@ -92,3 +92,15 @@ pack_aux([H|Rest], [[X|RestH]|RestA], Packed) :-
   Acc = [[X|RestH]|RestA],
   pack_aux(Rest, [[H]|Acc], Packed).
 
+
+% Problem 10 (*)
+% Compute the run-length encoding of a list.
+
+encode([], []).
+encode([X], [[X,1]]).
+encode([X|Rest], [[X,K]|RestE]) :-
+  encode(Rest, [[X,KI]|RestE]),
+  K is KI+1.
+encode([X|Rest], [[X,1],[Y,K]|RestE]) :-
+  encode(Rest, [[Y,K]|RestE]),
+  X =\= Y.
